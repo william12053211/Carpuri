@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
+    <uses-permission android:name="pleos.car.permission.CAR_DOORS" />
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <uses-permission android:name="android.car.permission.CAR_SPEED" />
+    <uses-permission android:name="android.car.permission.CAR_POWERTRAIN" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application
+        android:name=".CarpoolApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_carpool"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Carpuri">
+        <uses-library android:name="android.car" android:required="false" />
+        <service
+            android:name=".VehicleObservationService"
+            android:exported="false"
+            android:stopWithTask="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="User-visible local carpool occupancy and odometer recording from the vehicle while navigation is foreground; user can pause observation." />
+        </service>
+        <!-- Request Pleos' landscape app area; system driving/GNB areas remain system-owned. -->
+        <activity android:name=".MainActivity" android:exported="true"
+            android:resizeableActivity="true" android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustResize">
+            <!-- App enforces feature-specific CarUxRestrictions; listing review is separate. -->
+            <meta-data android:name="distractionOptimized" android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

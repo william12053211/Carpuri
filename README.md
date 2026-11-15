@@ -27,7 +27,7 @@
 |Android SDK|35|
 |Pleos Vehicle SDK|2.3.2 기반 좌석 상태 보정 버전|
 |에뮬레이터|Pleos Connect v2 계열, Android 14 (API 34)|
-|화면|가로형, 2560 × 1440 px 추정|
+|화면|가로형, 2560 × 1440 px |
 
 에뮬레이터의 세부 버전과 정확한 해상도는 AVD 설정에서 확인이 필요합니다.
 
